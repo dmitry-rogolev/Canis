@@ -1,0 +1,73 @@
+{
+    "name": "dmitryrogolev/canis",
+    "description": "Functional roles and permissions for the Laravel framework.",
+    "version": "0.0.1",
+    "type": "library",
+    "keywords": [
+        "roles", 
+        "is", 
+        "levels", 
+        "permissions",
+        "can",
+        "laravel",
+        "laravel-roles", 
+        "laravel-is", 
+        "laravel-levels", 
+        "laravel-permissions",
+        "laravel-can"
+    ],
+    "homepage": "https://github.com/dmitry-rogolev/Canis",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Rogolev",
+            "email": "work.drogolev@internet.ru",
+            "homepage": "https://dmitryrogolev.ru",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:dmitry-rogolev/Is.git"
+        }, 
+        {
+            "type": "vcs",
+            "url": "git@github.com:dmitry-rogolev/Can.git"
+        }
+    ], 
+    "require": {
+        "dmitryrogolev/is": "^0.0.1", 
+        "dmitryrogolev/can": "^0.0.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "dmitryrogolev\\Canis\\": "src/",
+            "dmitryrogolev\\Canis\\Database\\": "database/", 
+            "dmitryrogolev\\Canis\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "dmitryrogolev\\Canis\\Tests\\": "tests/", 
+            "dmitryrogolev\\Canis\\Tests\\Seeders\\": "tests/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "dmitryrogolev\\Canis\\Providers\\CanisServiceProvider", 
+                "dmitryrogolev\\Is\\Providers\\IsServiceProvider", 
+                "dmitryrogolev\\Can\\Providers\\CanServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}

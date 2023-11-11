@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage/>
+  <testsuites>
+    <testsuite name="Feature">
+      <directory suffix="Test.php">./tests/Feature</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="APP_KEY" value="base64:17D5MHqbPTIPEHCFqyaari5C7wKMoSceYyvwEXorYuI="/>
+    <env name="APP_ENV" value="testing"/>
+    <env name="DB_CONNECTION" value="testing"/>
+    <env name="CACHE_DRIVER" value="array"/>
+    <env name="SESSION_DRIVER" value="array"/>
+    <env name="QUEUE_DRIVER" value="sync"/>
+    <env name="DB_FOREIGN_KEYS" value="true" />
+
+    <env name="CANIS_CONNECTION" value="testing" />
+    <env name="CANIS_TABLES_ROLES" value="roles" />
+    <env name="CANIS_TABLES_ROLEABLES" value="roleables" />
+    <env name="CANIS_TABLES_PERMISSIONS" value="permissions" />
+    <env name="CANIS_TABLES_PERMISSIONABLES" value="permissionables" />
+    <env name="CANIS_RELATIONS_ROLEABLE" value="roleable" />
+    <env name="CANIS_RELATIONS_PERMISSIONABLE" value="permissionable" />
+    <env name="CANIS_PRIMARY_KEY" value="id" />
+    <env name="CANIS_MODELS_ROLE" value="dmitryrogolev\Canis\Tests\Role" />
+    <env name="CANIS_MODELS_ROLEABLE" value="dmitryrogolev\Is\Models\Roleable" />
+    <env name="CANIS_MODELS_PERMISSION" value="dmitryrogolev\Canis\Tests\Permission" />
+    <env name="CANIS_MODELS_PERMISSIONABLE" value="dmitryrogolev\Can\Models\Permissionable" />
+    <env name="CANIS_MODELS_USER" value="dmitryrogolev\Canis\Tests\User" />
+    <env name="CANIS_FACTORIES_ROLE" value="dmitryrogolev\Is\Database\Factories\RoleFactory" />
+    <env name="CANIS_FACTORIES_PERMISSION" value="dmitryrogolev\Can\Database\Factories\PermissionFactory" />
+    <env name="CANIS_SEEDERS_ROLE" value="dmitryrogolev\Is\Database\Seeders\RoleSeeder" />
+    <env name="CANIS_SEEDERS_PERMISSION" value="dmitryrogolev\Can\Database\Seeders\PermissionSeeder" />
+    <env name="CANIS_SEEDERS_ROLES_HAS_PERMISSIONS" value="dmitryrogolev\Canis\Database\Seeders\RolesHasPermissionsSeeder" />
+    <env name="CANIS_SEPARATOR" value="." />
+    <env name="CANIS_USES_UUID" value="true" />
+    <env name="CANIS_USES_SOFT_DELETES" value="true" />
+    <env name="CANIS_USES_TIMESTAMPS" value="true" />
+    <env name="CANIS_USES_MIGRATIONS" value="true" />
+    <env name="CANIS_USES_SEED" value="true" />
+    <env name="CANIS_USES_BLADE" value="true" />
+    <env name="CANIS_USES_MIDDLEWARES" value="true" />
+    <env name="CANIS_USES_LOAD_ON_UPDATE" value="true" />
+    <env name="CANIS_USES_EXTEND_IS_METHOD" value="true" />
+    <env name="CANIS_USES_EXTEND_CAN_METHOD" value="true" />
+    <env name="CANIS_USES_LEVELS" value="true" />
+  </php>
+  <source>
+    <include>
+      <directory suffix=".php">src/</directory>
+    </include>
+  </source>
+</phpunit>
