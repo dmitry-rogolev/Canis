@@ -55,14 +55,13 @@
     "autoload": {
         "psr-4": {
             "dmitryrogolev\\Canis\\": "src/",
-            "dmitryrogolev\\Canis\\Database\\": "database/", 
             "dmitryrogolev\\Canis\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "dmitryrogolev\\Canis\\Tests\\": "tests/", 
-            "dmitryrogolev\\Canis\\Tests\\Seeders\\": "tests/seeders/"
+            "dmitryrogolev\\Canis\\Tests\\Database\\Factories\\": "tests/database/factories/"
         }
     },
     "extra": {
