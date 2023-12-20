@@ -34,12 +34,20 @@
         {
             "type": "vcs",
             "url": "git@github.com:dmitry-rogolev/Can.git"
+        }, 
+        {
+            "type": "vcs",
+            "url": "git@github.com:dmitry-rogolev/Service.git"
+        }, 
+        {
+            "type": "vcs",
+            "url": "git@github.com:dmitry-rogolev/Slug.git"
         }
     ], 
     "require": {
-        "dmitryrogolev/is": "^0.0.1", 
-        "dmitryrogolev/can": "^0.0.1"
-    },
+        "dmitryrogolev/is": "^0.0.2",
+        "dmitryrogolev/can": "^0.0.2"
+    }, 
     "require-dev": {
         "orchestra/testbench": "^8.14",
         "laravel/pint": "^1.13"
