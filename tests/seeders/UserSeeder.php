@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $user = config('canis.models.user')::factory()->create();
-            $user->roles()->attach($userRole); 
+            $user->roles()->attach($userRole);
         }
 
         $permissions = config('canis.models.permission')::all();

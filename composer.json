@@ -1,7 +1,7 @@
 {
     "name": "dmitryrogolev/canis",
     "description": "Functional roles and permissions for the Laravel framework.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "library",
     "keywords": [
         "roles", 
@@ -41,7 +41,8 @@
         "dmitryrogolev/can": "^0.0.1"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.14"
+        "orchestra/testbench": "^8.14",
+        "laravel/pint": "^1.13"
     },
     "autoload": {
         "psr-4": {
@@ -68,6 +69,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit", 
+        "pint": "vendor/bin/pint"
     }
 }

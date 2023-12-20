@@ -2,7 +2,7 @@
 
 namespace dmitryrogolev\Canis\Traits;
 
-trait HasCanis 
+trait HasCanis
 {
     use HasRolesAndPermissions;
 }

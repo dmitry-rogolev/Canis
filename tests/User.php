@@ -10,12 +10,12 @@ if (config('canis.uses.uuid') && config('canis.uses.soft_deletes')) {
     {
         use HasUuids, SoftDeletes;
     }
-} else if (config('canis.uses.uuid')) {
+} elseif (config('canis.uses.uuid')) {
     class User extends BaseUser
     {
         use HasUuids;
     }
-} else if (config('canis.uses.soft_deletes')) {
+} elseif (config('canis.uses.soft_deletes')) {
     class User extends BaseUser
     {
         use SoftDeletes;
@@ -23,6 +23,5 @@ if (config('canis.uses.uuid') && config('canis.uses.soft_deletes')) {
 } else {
     class User extends BaseUser
     {
-        
     }
 }

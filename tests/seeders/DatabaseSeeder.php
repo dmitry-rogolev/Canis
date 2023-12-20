@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            config('canis.seeders.role'), 
-            config('canis.seeders.permission'), 
-            config('canis.seeders.roles_has_permissions'), 
-            \dmitryrogolev\Canis\Tests\Seeders\UserSeeder::class, 
+            config('canis.seeders.role'),
+            config('canis.seeders.permission'),
+            config('canis.seeders.roles_has_permissions'),
+            \dmitryrogolev\Canis\Tests\Seeders\UserSeeder::class,
         ]);
     }
 }

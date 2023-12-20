@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Tests;
 
@@ -9,10 +9,8 @@ class Role extends Model
 {
     /**
      * Роль относится к множеству пользователей
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function users(): MorphToMany 
+    public function users(): MorphToMany
     {
         return $this->roleables(config('canis.models.user'));
     }

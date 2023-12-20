@@ -10,14 +10,12 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         $connection = config('canis.connection');
         $table = app(config('canis.models.user'))->getTable();
-        
+
         if (! Schema::connection($connection)->hasTable($table)) {
             Schema::connection($connection)->create($table, function (Blueprint $table) {
                 if (config('canis.uses.uuid')) {
@@ -34,7 +32,7 @@ return new class extends Migration
 
                 if (config('canis.uses.timestamps')) {
                     $table->timestamps();
-                } 
+                }
 
                 if (config('canis.uses.soft_deletes')) {
                     $table->softDeletes();
@@ -45,8 +43,6 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User;
 
 class BaseUser extends User implements Canisable
 {
-    use HasFactory, HasCanis;
+    use HasCanis, HasFactory;
 
     protected $guarded = [];
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Tests\Feature;
 
@@ -7,9 +7,10 @@ use dmitryrogolev\Canis\Tests\TestCase;
 class HasRolesTest extends TestCase
 {
     private string $user = '';
+
     private string $role = '';
 
-    protected function setUp(): void 
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -19,10 +20,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем получение ролей
-     *
-     * @return void
      */
-    public function test_get_roles(): void 
+    public function test_get_roles(): void
     {
         $admin = $this->role::admin()->users()->first();
 
@@ -31,10 +30,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Присоединяем роль к пользователю
-     *
-     * @return void
      */
-    public function test_attach_role(): void 
+    public function test_attach_role(): void
     {
         $user = $this->user::factory()->create();
         $roles = $this->role::all();
@@ -78,10 +75,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Отсоединяем роль
-     *
-     * @return void
      */
-    public function test_detach_role(): void 
+    public function test_detach_role(): void
     {
         $user = $this->role::admin()->users()->first();
         $roles = $user->roles;
@@ -118,10 +113,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Отсоединяем все роли
-     * 
-     * @return void
      */
-    public function test_detach_all_roles(): void 
+    public function test_detach_all_roles(): void
     {
         $user = $this->role::admin()->users()->first();
         $this->assertTrue($user->roles->isNotEmpty());
@@ -129,15 +122,13 @@ class HasRolesTest extends TestCase
         if (! config('is.uses.load_on_update')) {
             $user->loadRoles();
         }
-        $this->assertTrue($user->roles->isEmpty());      
+        $this->assertTrue($user->roles->isEmpty());
     }
 
     /**
      * Синхронизируем роли
-     *
-     * @return void
      */
-    public function test_sync_roles(): void 
+    public function test_sync_roles(): void
     {
         $user = $this->role::admin()->users()->first();
 
@@ -154,10 +145,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем наличие хотябы одной роли
-     *
-     * @return void
      */
-    public function test_has_one_role(): void 
+    public function test_has_one_role(): void
     {
         $user = $this->role::admin()->users()->first();
         $roles = $user->roles;
@@ -166,13 +155,13 @@ class HasRolesTest extends TestCase
         $this->assertTrue($user->hasOneRole($roles->get(1)->slug));
         $this->assertTrue($user->hasOneRole($roles));
         $this->assertTrue($user->hasOneRole([$roles->get(0)->getKey(), $roles->get(1)->getKey()]));
-        $this->assertTrue($user->hasOneRole($roles->get(0)->slug . '|' . $roles->get(1)->slug));
+        $this->assertTrue($user->hasOneRole($roles->get(0)->slug.'|'.$roles->get(1)->slug));
 
         $user = config('is.models.user')::factory()->create();
         $user->attachRole('admin');
         if (config('is.uses.levels')) {
             $this->assertTrue($user->hasOneRole($this->role::factory()->create([
-                'level' => 1
+                'level' => 1,
             ])));
         } else {
             $this->assertFalse($user->hasOneRole($this->role::factory()->create()));
@@ -181,10 +170,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем наличие всех ролей
-     *
-     * @return void
      */
-    public function test_has_all_roles(): void 
+    public function test_has_all_roles(): void
     {
         $user = $this->role::admin()->users()->first();
         $roles = $user->roles;
@@ -197,10 +184,10 @@ class HasRolesTest extends TestCase
         $user->attachRole('admin');
         if (config('is.uses.levels')) {
             $this->assertTrue($user->hasAllRoles($this->role::factory()->create([
-                'level' => 1
+                'level' => 1,
             ])));
             $this->assertTrue($user->hasAllRoles($this->role::factory()->count(3)->create([
-                'level' => 2
+                'level' => 2,
             ])));
         } else {
             $this->assertFalse($user->hasRole($this->role::factory()->create()));
@@ -210,10 +197,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем наличие роли
-     *
-     * @return void
      */
-    public function test_has_role(): void 
+    public function test_has_role(): void
     {
         $user = $this->role::admin()->users()->first();
         $roles = $user->roles;
@@ -225,7 +210,7 @@ class HasRolesTest extends TestCase
         $user->attachRole('admin');
         if (config('is.uses.levels')) {
             $this->assertTrue($user->hasRole($this->role::factory()->create([
-                'level' => 1
+                'level' => 1,
             ])));
         } else {
             $this->assertFalse($user->hasRole($this->role::factory()->create()));
@@ -234,10 +219,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем получение максимального уровня ролей
-     *
-     * @return void
      */
-    public function test_level(): void 
+    public function test_level(): void
     {
         if (! config('is.uses.levels')) {
             $this->markTestSkipped('Уровни ролей отключены.');
@@ -250,10 +233,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем получение роли с максимальным уровнем
-     *
-     * @return void
      */
-    public function test_role(): void 
+    public function test_role(): void
     {
         if (! config('is.uses.levels')) {
             $this->markTestSkipped('Уровни ролей отключены.');
@@ -266,10 +247,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Проверяем возможность получения роли с помощью магического метода
-     *
-     * @return void
      */
-    public function test_magic_is(): void 
+    public function test_magic_is(): void
     {
         $user = $this->role::admin()->users()->first();
 
@@ -284,10 +263,8 @@ class HasRolesTest extends TestCase
 
     /**
      * Тестируем расширение метода is
-     *
-     * @return void
      */
-    public function test_is(): void 
+    public function test_is(): void
     {
         if (! config('is.uses.extend_is_method')) {
             $this->markTestSkipped('Метод is не расширен.');

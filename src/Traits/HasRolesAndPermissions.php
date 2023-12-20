@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Traits;
 
@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-trait HasRolesAndPermissions 
+trait HasRolesAndPermissions
 {
-    use HasRoles, HasPermissions {
+    use HasPermissions, HasRoles {
         HasRoles::__call as callMagicRoles;
         HasPermissions::__call as callMagicPermissions;
         HasPermissions::attachPermission as parentAttachPermission;
         HasPermissions::detachPermission as parentDetachPermission;
         HasPermissions::detachAllPermissions as parentDetachAllPermissions;
-    } 
+    }
 
     /**
      * Все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели
@@ -27,18 +27,14 @@ trait HasRolesAndPermissions
 
     /**
      * Погрузить все разрешения.
-     *
-     * @return void
      */
-    public function loadAllPermissions(): void 
+    public function loadAllPermissions(): void
     {
         $this->allPermissions = $this->unionPermissions()->get();
     }
 
     /**
      * Все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function allPermissions(): Builder
     {
@@ -47,8 +43,6 @@ trait HasRolesAndPermissions
 
     /**
      * Возвращает все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAllPermissions(): Collection
     {
@@ -61,29 +55,27 @@ trait HasRolesAndPermissions
 
     /**
      * Обнуляем поле с разрешениями
-     *
-     * @return void
      */
-    public function resetAllPermissions(): void 
+    public function resetAllPermissions(): void
     {
         $this->allPermissions = null;
     }
 
     /**
      * Присоединить разрешения
-     * 
+     *
      * Можно передавать идентификатор, slug или модель разрешения.
-     * 
-     * @param mixed ...$permission
-     * @return bool
+     *
+     * @param  mixed  ...$permission
      */
-    public function attachPermission(...$permission): bool 
+    public function attachPermission(...$permission): bool
     {
         if ($this->parentAttachPermission($permission)) {
             $this->resetAllPermissions();
             if (config('canis.uses.load_on_update')) {
                 $this->loadAllPermissions();
             }
+
             return true;
         }
 
@@ -92,20 +84,20 @@ trait HasRolesAndPermissions
 
     /**
      * Отсоединить разрешения
-     * 
+     *
      * Можно передавать идентификатор, slug или модель разрешения.
      * Если ничего не передовать, то будут отсоединены все отношения.
-     * 
-     * @param mixed ...$permission
-     * @return bool
+     *
+     * @param  mixed  ...$permission
      */
-    public function detachPermission(...$permission): bool 
+    public function detachPermission(...$permission): bool
     {
         if ($this->parentDetachPermission($permission)) {
             $this->resetAllPermissions();
             if (config('canis.uses.load_on_update')) {
                 $this->loadAllPermissions();
             }
+
             return true;
         }
 
@@ -113,24 +105,23 @@ trait HasRolesAndPermissions
     }
 
     /**
-     * Отсоединить все разрешения 
-     *
-     * @return boolean
+     * Отсоединить все разрешения
      */
-    public function detachAllPermissions(): bool 
+    public function detachAllPermissions(): bool
     {
         if ($this->parentDetachAllPermissions()) {
             $this->resetAllPermissions();
             if (config('canis.uses.load_on_update')) {
                 $this->loadAllPermissions();
             }
+
             return true;
         }
 
         return false;
     }
 
-    public function __call($method, $parameters) 
+    public function __call($method, $parameters)
     {
         try {
             return parent::__call($method, $parameters);
@@ -138,7 +129,7 @@ trait HasRolesAndPermissions
             if (is_bool($is = $this->callMagicIsRole($method))) {
                 return $is;
             }
-    
+
             if (is_bool($can = $this->callMagicCanPermission($method))) {
                 return $can;
             }
@@ -158,8 +149,6 @@ trait HasRolesAndPermissions
 
     /**
      * Объединение разрешений текущей модели с разрешениями ролей
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function unionPermissions(): Builder
     {
@@ -180,19 +169,14 @@ trait HasRolesAndPermissions
 
     /**
      * Проверяем наличие разрешения
-     *
-     * @param mixed $permission
-     * @return boolean
      */
-    protected function checkPermission(mixed $permission): bool 
+    protected function checkPermission(mixed $permission): bool
     {
         return $this->getAllPermissions()->contains(fn ($item) => $item->getKey() === $permission || $item->slug === $permission || $permission instanceof (config('canis.models.permission')) && $item->is($permission));
     }
 
     /**
      * Строим запрос на получения разрешений текущей модели
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     private function queryModelPermissions(): Builder
     {
@@ -201,22 +185,16 @@ trait HasRolesAndPermissions
 
     /**
      * Строим запрос на получения разрешений роли
-     *
-     * @param \Illuminate\Database\Eloquent\Model $role
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    private function queryRolePermissions(Model $role): Builder 
+    private function queryRolePermissions(Model $role): Builder
     {
         return $this->queryPermissions($role);
     }
 
     /**
      * Строим запрос на получение разрешений для указанной модели
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    private function queryPermissions(Model $model): Builder 
+    private function queryPermissions(Model $model): Builder
     {
         $permissionModel = app(config('canis.models.permission'));
 

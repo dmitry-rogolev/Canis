@@ -31,20 +31,20 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->publish('is');
-        $this->publish('can');   
-        $this->publish('canis');     
+        $this->publish('can');
+        $this->publish('canis');
     }
 
-    private function publish(string $tag): void 
+    private function publish(string $tag): void
     {
         if ($this->option('config')) {
             $tag .= '-config';
-        } else if ($this->option('seeders')) {
+        } elseif ($this->option('seeders')) {
             $tag .= '-seeders';
-        } 
-        
+        }
+
         $this->call('vendor:publish', [
-            '--tag' => $tag, 
+            '--tag' => $tag,
         ]);
     }
 }

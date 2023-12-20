@@ -1,8 +1,7 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Contracts;
 
-interface Canisable extends RoleableAndPermissionable 
+interface Canisable extends RoleableAndPermissionable
 {
-
 }

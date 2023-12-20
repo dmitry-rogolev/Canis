@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Models;
 

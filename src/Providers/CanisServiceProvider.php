@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Providers;
 
@@ -9,15 +9,11 @@ class CanisServiceProvider extends ServiceProvider
 {
     /**
      * Имя тега пакета
-     *
-     * @var string
      */
     private string $packageTag = 'canis';
 
     /**
      * Регистрация любых служб пакета.
-     * 
-     * @return void
      */
     public function register(): void
     {
@@ -32,15 +28,13 @@ class CanisServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+
     }
 
     /**
      * Объединяем конфигурацию пакета с конфигурацией приложения
-     *
-     * @return void
      */
-    private function mergeConfig(): void 
+    private function mergeConfig(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/canis.php', 'canis');
         $this->mergeConfigFrom(__DIR__.'/../../config/canis.php', 'can');
@@ -49,10 +43,8 @@ class CanisServiceProvider extends ServiceProvider
 
     /**
      * Регистируем миграции пакета.
-     *
-     * @return void
      */
-    private function loadMigrations(): void 
+    private function loadMigrations(): void
     {
         if (config('canis.uses.migrations')) {
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
@@ -61,31 +53,27 @@ class CanisServiceProvider extends ServiceProvider
 
     /**
      * Публикуем файлы пакета
-     *
-     * @return void
      */
-    private function publishFiles(): void 
+    private function publishFiles(): void
     {
         $this->publishes([
-            __DIR__.'/../../config/canis.php' => config_path('canis.php'), 
+            __DIR__.'/../../config/canis.php' => config_path('canis.php'),
         ], $this->packageTag.'-config');
 
         $this->publishes([
-            __DIR__.'/../../database/seeders/publish' => database_path('seeders'), 
+            __DIR__.'/../../database/seeders/publish' => database_path('seeders'),
         ], $this->packageTag.'-seeders');
 
         $this->publishes([
-            __DIR__.'/../../config/canis.php' => config_path('canis.php'), 
-            __DIR__.'/../../database/seeders/publish' => database_path('seeders'), 
+            __DIR__.'/../../config/canis.php' => config_path('canis.php'),
+            __DIR__.'/../../database/seeders/publish' => database_path('seeders'),
         ], $this->packageTag);
     }
 
     /**
      * Регистрируем сидеры
-     *
-     * @return void
      */
-    private function loadSeedsFrom(): void 
+    private function loadSeedsFrom(): void
     {
         if (config('canis.uses.seeders')) {
             $this->app->afterResolving('seed.handler', function ($handler) {
@@ -95,15 +83,13 @@ class CanisServiceProvider extends ServiceProvider
     }
 
     /**
-     * Регистрируем комманды 
-     *
-     * @return void
+     * Регистрируем комманды
      */
-    private function registerCommands(): void 
+    private function registerCommands(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                InstallCommand::class, 
+                InstallCommand::class,
             ]);
         }
     }

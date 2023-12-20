@@ -13,7 +13,7 @@ class RolesHasPermissionsSeeder extends Seeder
     {
         $permissions = config('canis.models.permission')::all();
         $admin = config('canis.models.role')::admin();
-        
+
         foreach ($permissions as $permission) {
             $admin->permissions()->attach($permission);
         }
