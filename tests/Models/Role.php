@@ -1,14 +1,14 @@
 <?php
 
-namespace dmitryrogolev\Canis\Tests;
+namespace dmitryrogolev\Canis\Tests\Models;
 
-use dmitryrogolev\Canis\Models\Role as Model;
+use dmitryrogolev\Is\Models\Role as Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Role extends Model
 {
     /**
-     * Роль относится к множеству пользователей
+     * Роль относится ко множеству пользователей.
      */
     public function users(): MorphToMany
     {

@@ -55,7 +55,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function defineRoutes($router)
     {
-        // $router->middleware('web')->group(__DIR__.'/routes/web.php');
+        $router->middleware('web')->group(__DIR__.'/routes/web.php');
     }
 
     /**
