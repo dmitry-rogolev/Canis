@@ -7,7 +7,7 @@ use dmitryrogolev\Is\Contracts\Roleable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-interface RoleableAndPermissionable extends Permissionable, Roleable
+interface RoleableAndPermissionable // extends Permissionable, Roleable
 {
     /**
      * Погрузить все разрешения.

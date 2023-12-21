@@ -16,20 +16,19 @@ return [
      *
      * Пакет использует полиморфные отношения многие-ко-многим.
      *
-     * Определяются следующие таблицы:
-     *
-     * 1). таблица ролей и промежуточная таблица,
-     * которая соединяет модели, использующие трейт HasRoles, с ролями;
-     *
-     * 2). таблица разрешений и промежуточная таблица,
-     * которая соединяет модели, использующие трейт HasPermissions с разрешениями;
-     *
      * @link https://clck.ru/36JLPn Полиморфные отношения многие-ко-многим
      */
     'tables' => [
+        // Таблица ролей.
         'roles' => env('CANIS_TABLES_ROLES', 'roles'),
+
+        // Промежуточная таблица, которая соединяет модели, использующие трейт HasRoles, с ролями.
         'roleables' => env('CANIS_TABLES_ROLEABLES', 'roleables'),
+
+        // Таблица разрешений.
         'permissions' => env('CANIS_TABLES_PERMISSIONS', 'permissions'),
+
+        // промежуточная таблица, которая соединяет модели, использующие трейт HasPermissions с разрешениями.
         'permissionables' => env('CANIS_TABLES_PERMISSIONABLES', 'permissionables'),
     ],
 
@@ -51,7 +50,7 @@ return [
     ],
 
     /**
-     * * Имя первичного ключа моделей
+     * * Имя первичного ключа моделей.
      *
      * Первичный ключ - это поле в таблице, которое хранит уникальное значение,
      * по которому можно явно идентифицировать ту или иную запись в таблице.
@@ -65,19 +64,19 @@ return [
      */
     'models' => [
 
-        // Роль
+        // Роль.
         'role' => env('CANIS_MODELS_ROLE', \dmitryrogolev\Canis\Models\Role::class),
 
-        // Промежуточная модель
+        // Промежуточная модель роли.
         'roleable' => env('CANIS_MODELS_ROLEABLE', \dmitryrogolev\Is\Models\Roleable::class),
 
-        // Разрешение
+        // Разрешение.
         'permission' => env('CANIS_MODELS_PERMISSION', \dmitryrogolev\Can\Models\Permission::class),
 
-        // Промежуточная модель
+        // Промежуточная модель разрешения.
         'permissionable' => env('CANIS_MODELS_PERMISSIONABLE', \dmitryrogolev\Can\Models\Permissionable::class),
 
-        // Пользователь по умолчанию
+        // Модель пользователя.
         'user' => env('CANIS_MODELS_USER', config('auth.providers.users.model')),
 
     ],
@@ -87,10 +86,10 @@ return [
      */
     'factories' => [
 
-        // Фабрика роли
+        // Фабрика роли.
         'role' => env('CANIS_FACTORIES_ROLE', \dmitryrogolev\Is\Database\Factories\RoleFactory::class),
 
-        // Фабрика разрешения
+        // Фабрика разрешения.
         'permission' => env('CANIS_FACTORIES_PERMISSION', \dmitryrogolev\Can\Database\Factories\PermissionFactory::class),
 
     ],
@@ -100,13 +99,13 @@ return [
      */
     'seeders' => [
 
-        // Сидер роли
+        // Сидер роли.
         'role' => env('CANIS_SEEDERS_ROLE', \dmitryrogolev\Is\Database\Seeders\RoleSeeder::class),
 
-        // Сидер разрешения
+        // Сидер разрешения.
         'permission' => env('CANIS_SEEDERS_PERMISSION', \dmitryrogolev\Can\Database\Seeders\PermissionSeeder::class),
 
-        // Сидер отношений ролей с разрешениями
+        // Сидер отношений ролей с разрешениями.
         'roles_has_permissions' => env('CANIS_SEEDERS_ROLES_HAS_PERMISSIONS', \dmitryrogolev\Canis\Database\Seeders\RolesHasPermissionsSeeder::class),
 
     ],
@@ -119,7 +118,7 @@ return [
     'separator' => env('CANIS_SEPARATOR', '.'),
 
     /**
-     * * Флаги
+     * * Флаги.
      */
     'uses' => [
 

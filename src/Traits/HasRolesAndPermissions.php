@@ -10,13 +10,23 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasRolesAndPermissions
 {
-    use HasPermissions, HasRoles {
-        HasRoles::__call as callMagicRoles;
-        HasPermissions::__call as callMagicPermissions;
-        HasPermissions::attachPermission as parentAttachPermission;
-        HasPermissions::detachPermission as parentDetachPermission;
-        HasPermissions::detachAllPermissions as parentDetachAllPermissions;
-    }
+    // use HasRoles {
+    //     HasRoles::__call as callMagicRoles;
+    //     // HasRoles::isId as private;
+    //     HasRoles::toFlattenArray insteadof HasPermissions;
+    //     HasRoles::replaceIdsWithModels insteadof HasPermissions;
+    //     HasRoles::sortModelsAndIds insteadof HasPermissions;
+    //     HasRoles::notAttachedFilter insteadof HasPermissions;
+    //     HasRoles::attachedFilter insteadof HasPermissions;
+    // }
+
+    // use HasPermissions {
+    //     HasPermissions::__call as callMagicPermissions;
+    //     // HasPermissions::isId as private;
+    //     HasPermissions::attachPermission as parentAttachPermission;
+    //     HasPermissions::detachPermission as parentDetachPermission;
+    //     HasPermissions::detachAllPermissions as parentDetachAllPermissions;
+    // }
 
     /**
      * Все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели
