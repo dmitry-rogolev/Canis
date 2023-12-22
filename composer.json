@@ -67,9 +67,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "dmitryrogolev\\Canis\\Providers\\CanisServiceProvider", 
-                "dmitryrogolev\\Is\\Providers\\IsServiceProvider", 
-                "dmitryrogolev\\Can\\Providers\\CanServiceProvider"
+                "dmitryrogolev\\Canis\\Providers\\CanisServiceProvider"
             ]
         }
     },

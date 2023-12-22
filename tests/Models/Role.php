@@ -2,7 +2,7 @@
 
 namespace dmitryrogolev\Canis\Tests\Models;
 
-use dmitryrogolev\Is\Models\Role as Model;
+use dmitryrogolev\Canis\Models\Role as Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Role extends Model

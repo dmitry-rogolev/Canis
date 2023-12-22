@@ -2,7 +2,11 @@
 
 namespace dmitryrogolev\Canis\Providers;
 
+use dmitryrogolev\Can\Providers\CanServiceProvider;
 use dmitryrogolev\Canis\Console\Commands\InstallCommand;
+use dmitryrogolev\Is\Providers\IsServiceProvider;
+use Illuminate\Config\Repository;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class CanisServiceProvider extends ServiceProvider
@@ -17,6 +21,9 @@ class CanisServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->register(IsServiceProvider::class);
+        $this->app->register(CanServiceProvider::class);
+
         $this->mergeConfig();
         $this->loadMigrations();
         $this->publishFiles();
@@ -37,8 +44,14 @@ class CanisServiceProvider extends ServiceProvider
     private function mergeConfig(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/canis.php', 'canis');
-        $this->mergeConfigFrom(__DIR__.'/../../config/canis.php', 'can');
-        $this->mergeConfigFrom(__DIR__.'/../../config/canis.php', 'is');
+
+        // Заменяем конфигурацию пакетов Is и Can на собственную.
+        $config = config()->all();
+        $config['is'] =& $config['canis'];
+        $config['can'] =& $config['canis'];
+        $this->app->bind('config', function ($app) use ($config) {
+            return new Repository($config);
+        });
     }
 
     /**

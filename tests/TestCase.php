@@ -2,9 +2,7 @@
 
 namespace dmitryrogolev\Canis\Tests;
 
-use dmitryrogolev\Can\Providers\CanServiceProvider;
 use dmitryrogolev\Canis\Providers\CanisServiceProvider;
-use dmitryrogolev\Is\Providers\IsServiceProvider;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +40,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             CanisServiceProvider::class,
-            IsServiceProvider::class,
-            CanServiceProvider::class,
         ];
     }
 
