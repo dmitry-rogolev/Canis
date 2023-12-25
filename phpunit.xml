@@ -44,6 +44,7 @@
     <env name="CANIS_USES_EXTEND_IS_METHOD" value="true" />
     <env name="CANIS_USES_EXTEND_CAN_METHOD" value="true" />
     <env name="CANIS_USES_LEVELS" value="true" />
+    <env name="CANIS_USES_ALL_PERMISSIONS" value="true" />
   </php>
   <source>
     <include>

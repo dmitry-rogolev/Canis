@@ -50,7 +50,6 @@ Route::middleware(['level:3'])->post('level/3', fn () => true);
 Route::middleware(['level:4'])->post('level/4', fn () => true);
 Route::middleware(['level:5'])->post('level/5', fn () => true);
 
-
 Route::get('permission/view.users', fn () => true)->middleware('permission:view.users');
 Route::get('permission/create.users', fn () => true)->middleware('permission:create.users');
 Route::get('permission/edit.users', fn () => true)->middleware('permission:edit.users');

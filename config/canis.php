@@ -256,5 +256,17 @@ return [
          */
         'levels' => (bool) env('CANIS_USES_LEVELS', true),
 
+        /**
+         * * Возвращать ли методу "getPermissions" все разрешения?
+         *
+         * По умолчанию метод "getPermissions" трейта "dmitryrogolev\Can\Traits\HasPermissions"
+         * возвращает разрешения только для модели, использующей данный функционал.
+         * Т.е. только те разрешения, которые присоединены непосредственно к модели.
+         *
+         * Есть включена данная опция, метод "getPermissions" будет возвращать также и все разрешения,
+         * которые есть у ролей, присоединенных к модели.
+         */
+        'all_permissions' => (bool) env('CANIS_USES_ALL_PERMISSIONS', true),
+
     ],
 ];

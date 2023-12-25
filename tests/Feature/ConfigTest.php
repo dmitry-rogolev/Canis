@@ -173,10 +173,8 @@ class ConfigTest extends TestCase
 
     /**
      * Есть ли конфигурация имени сидера отношений ролей с разрешениями?
-     *
-     * @return void
      */
-    public function test_seeders_roles_has_permissions(): void 
+    public function test_seeders_roles_has_permissions(): void
     {
         $this->assertTrue(class_exists(config('canis.seeders.roles_has_permissions')));
     }
@@ -267,5 +265,14 @@ class ConfigTest extends TestCase
     public function test_uses_levels(): void
     {
         $this->assertTrue(is_bool(config('canis.uses.levels')));
+    }
+
+    /**
+     * Есть ли конфигурация флага использования возврата всех разрешений
+     * методом "allPermissions" трейта "dmitryrogolev\Can\Traits\HasPermissions"?
+     */
+    public function test_uses_all_permissions(): void
+    {
+        $this->assertTrue(is_bool(config('canis.uses.all_permissions')));
     }
 }

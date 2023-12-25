@@ -6,13 +6,15 @@ use dmitryrogolev\Can\Providers\CanServiceProvider;
 use dmitryrogolev\Canis\Console\Commands\InstallCommand;
 use dmitryrogolev\Is\Providers\IsServiceProvider;
 use Illuminate\Config\Repository;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Поставщик функционала ролей и разрешений.
+ */
 class CanisServiceProvider extends ServiceProvider
 {
     /**
-     * Имя тега пакета
+     * Имя тега пакета.
      */
     private string $packageTag = 'canis';
 
@@ -21,10 +23,11 @@ class CanisServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfig();
+
         $this->app->register(IsServiceProvider::class);
         $this->app->register(CanServiceProvider::class);
 
-        $this->mergeConfig();
         $this->loadMigrations();
         $this->publishFiles();
         $this->registerCommands();
@@ -47,15 +50,15 @@ class CanisServiceProvider extends ServiceProvider
 
         // Заменяем конфигурацию пакетов Is и Can на собственную.
         $config = config()->all();
-        $config['is'] =& $config['canis'];
-        $config['can'] =& $config['canis'];
+        $config['is'] = &$config['canis'];
+        $config['can'] = &$config['canis'];
         $this->app->bind('config', function ($app) use ($config) {
             return new Repository($config);
         });
     }
 
     /**
-     * Регистируем миграции пакета.
+     * Регистрируем миграции пакета.
      */
     private function loadMigrations(): void
     {
@@ -65,7 +68,7 @@ class CanisServiceProvider extends ServiceProvider
     }
 
     /**
-     * Публикуем файлы пакета
+     * Публикуем файлы пакета.
      */
     private function publishFiles(): void
     {
@@ -84,7 +87,7 @@ class CanisServiceProvider extends ServiceProvider
     }
 
     /**
-     * Регистрируем сидеры
+     * Регистрируем сидеры.
      */
     private function loadSeedsFrom(): void
     {
@@ -96,7 +99,7 @@ class CanisServiceProvider extends ServiceProvider
     }
 
     /**
-     * Регистрируем комманды
+     * Регистрируем команды.
      */
     private function registerCommands(): void
     {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace dmitryrogolev\Canis\Tests\Database\Seeders;
 
@@ -20,15 +20,11 @@ class RolesHasPermissionsSeederTest extends TestCase
 
     /**
      * Сидер ролей.
-     *
-     * @var string
      */
     protected string $roleSeeder;
 
     /**
      * Сидер разрешений.
-     *
-     * @var string
      */
     protected string $permissionSeeder;
 

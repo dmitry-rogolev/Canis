@@ -7,25 +7,28 @@ use dmitryrogolev\Is\Contracts\Roleable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-interface RoleableAndPermissionable // extends Permissionable, Roleable
+/**
+ * Функционал ролей и разрешений.
+ */
+interface RoleableAndPermissionable extends Permissionable, Roleable
 {
-    /**
-     * Погрузить все разрешения.
-     */
-    public function loadAllPermissions(): void;
-
     /**
      * Все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели.
      */
     public function allPermissions(): Builder;
 
     /**
-     * Возвращает все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели
+     * Загружает все разрешения.
+     */
+    public function loadAllPermissions(): static;
+
+    /**
+     * Все разрешения, которые есть непосредственно у текущей модели и у ролей данной модели.
      */
     public function getAllPermissions(): Collection;
 
     /**
-     * Обнуляем поле с разрешениями
+     * Обнуляет поле со всеми разрешениями.
      */
-    public function resetAllPermissions(): void;
+    public function resetAllPermissions(): static;
 }
