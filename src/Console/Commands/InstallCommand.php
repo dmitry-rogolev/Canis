@@ -55,7 +55,7 @@ class InstallCommand extends Command
         $option = '';
 
         if ($this->option('config')) {
-            $option = '--config';
+            return;
         } elseif ($this->option('migrations')) {
             $option = '--migrations';
         } elseif ($this->option('seeders')) {

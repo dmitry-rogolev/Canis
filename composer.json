@@ -45,8 +45,8 @@
         }
     ], 
     "require": {
-        "dmitryrogolev/can": "dev-dev",
-        "dmitryrogolev/is": "dev-dev"
+        "dmitryrogolev/can": "^0.0.2",
+        "dmitryrogolev/is": "^0.0.2"
     }, 
     "require-dev": {
         "orchestra/testbench": "^8.14",
